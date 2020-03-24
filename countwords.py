@@ -18,3 +18,15 @@ stop=open('停用词表.txt')
 stop_string=stop.read()
 stop_new=stop_string.replace('\n',' ')
 stop_new=stop_new.split()#停用词表
+for i in word_list:
+    if i not in stop_new:
+        if i not in wordtype_list:
+            wordtype_list.append(i)#统计去除停用词后的单词种类
+for i in wordtype_list:
+    amount_list.append(word_list.count(i))#统计词频
+    dic_wordamount[i]=word_list.count(i)
+keys_list=list(dic_wordamount.keys())
+values_list=list(dic_wordamount.values())
+values_list.sort(reverse=True)#很关键的操作！
+for i in range(len(keys_list)):
+    print(keys_list[i],":",values_list[i])#打印词频
